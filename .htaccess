@@ -46,6 +46,37 @@
 Options -Indexes
 # Prevents users from seeing files in a directory that doesn't have an index file
 
+# Block xmlrpc
+<files xmlrpc.php>
+	Require all denied
+</files>
+# Block xmlrpc End
+
+# Block .htaccess and .htpasswd
+<FilesMatch ^(?i:\.ht.*)$>
+	Require all denied
+</FilesMatch>
+# Block .htaccess and .htpasswd End
+
+# Block author scans
+RewriteEngine On
+RewriteBase /
+RewriteCond %{QUERY_STRING} (author=\d+) [NC]
+RewriteRule .* - [F]
+# Block author scans End
+
+# Block access sensitive files
+<FilesMatch "^.*(((?:wp-config)\.(?:php|bak|swp))|php.ini|\.[hH][tT][aApP].*|((?:error_log|readme|license|changelog|-config|-sample)\.(?:php|md|log|txt|htm|html)))$">
+	Require all denied
+</FilesMatch>
+# Block access sensitive files End
+
+# Enable bot protection
+RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} (?:virusbot|spambot|evilbot|acunetix|BLEXBot|domaincrawler\.com|LinkpadBot|MJ12bot/v|majestic12\.co\.uk|AhrefsBot|TwengaBot|SemrushBot|nikto|winhttp|Xenu\s+Link\s+Sleuth|Baiduspider|HTTrack|clshttp|harvest|extract|grab|miner|python-requests) [NC]
+RewriteRule ^(.*)$ http://no.access/
+# Enable bot protection End
+
 # Protect wp-config.php
 <files wp-config.php>
     Order deny,allow
