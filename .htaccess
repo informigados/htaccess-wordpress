@@ -1,11 +1,63 @@
 #------------------------------------------------------------------------
 #  * WP WEB - https://wpweb.com.br
-#  * Copyright (C) 2023 INformigados - https://informigados.com.br
+#  * Copyright (C) 2023-2024 INformigados - https://informigados.com.br
 #
 #    Add these lines to your .htaccess to speed boost
 #
 #    Do not overwrite/replace with your .htaccess, but ADD these lines!
 #------------------------------------------------------------------------
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    # Redirects the main site index.php
+    RewriteRule ^index\.php$ - [L]
+    # Conditions for files and directories that exist
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Redirects all requests to index.php if above conditions are met
+    RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
+# Block Access to Sensitive Files
+<FilesMatch "^wp-admin/includes/.*$|^wp-includes/.*\.php$|^wp-content/.*\.php$|^.*\.md$|^.*\.txt$|^/vendor/.*$|^/node_modules/.*$">
+    Order deny,allow
+    Deny from all
+    # Prevents direct access to PHP and Markdown files within core directories
+</FilesMatch>
+
+# Prevent Direct Access to XML and PHP Files in Uploads Directory
+<DirectoryMatch "^wp-content/uploads/">
+    <Files "*.php">
+        Order Deny,Allow
+        Deny from All
+        # Blocks direct PHP file access in uploads
+    </Files>
+    <Files "*.xml">
+        Order Deny,Allow
+        Deny from All
+        # Blocks direct XML file access in uploads
+    </Files>
+</DirectoryMatch>
+
+# Disable Directory Browsing
+Options -Indexes
+# Prevents users from seeing files in a directory that doesn't have an index file
+
+# Protect wp-config.php
+<files wp-config.php>
+    Order deny,allow
+    Deny from all
+    # Ensures wp-config.php, which contains sensitive information, is not accessible
+</files>
+
+# Enable Brotli Compression (if supported)
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/plain text/css application/json application/javascript application/xml text/xml image/svg+xml
+    # Applies Brotli compression to improve load times for supported formats
+</IfModule>
 
 # Add MIME Type 
 <IfModule mime_module>
