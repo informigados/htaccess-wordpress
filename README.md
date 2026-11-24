@@ -1,4 +1,4 @@
-# ⚙️ WP Web Speed Boost
+# Htaccess WordPress
 
 An Apache [`.htaccess`](.htaccess) reference for WordPress, with examples for browser caching, compression, MIME types, and access rules.
 
@@ -30,4 +30,4 @@ Use [issues](https://github.com/informigados/htaccess-wordpress/issues) or pull 
 
 ## 📄 License
 
-WP Web Speed Boost is © 2023 [INformigados](https://informigados.com.br/). This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
