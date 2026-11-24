@@ -2,6 +2,11 @@
 
 An Apache [`.htaccess`](.htaccess) reference for WordPress, with examples for browser caching, compression, MIME types, and access rules.
 
+[![Apache HTTP Server](docs/assets/apache.svg)](https://httpd.apache.org/)
+[![WordPress](docs/assets/wordpress.svg)](https://wordpress.org/)
+[![License: MIT](docs/assets/license.svg)](LICENSE)
+[![DeepWiki](docs/assets/deepwiki.svg)](https://deepwiki.com/informigados/htaccess-wordpress)
+
 ## ✨ What's included
 
 - Cache-Control and expiration rules for static assets, including images and fonts.
