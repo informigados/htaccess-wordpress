@@ -1,36 +1,33 @@
-WP Web Speed Boost - .htaccess Configuration
+# ⚙️ WP Web Speed Boost
 
-This repository contains an optimized .htaccess configuration file designed to improve the performance of your WordPress website. The provided .htaccess file includes settings for cache control, MIME types, header adjustments, and Gzip compression. The goal is to achieve a perfect .htaccess configuration without errors, and we encourage suggestions and improvements.
+An Apache [`.htaccess`](.htaccess) reference for WordPress, with examples for browser caching, compression, MIME types, and access rules.
 
-Installation
+## ✨ What's included
 
-Important: Do not overwrite or replace your existing .htaccess file. Instead, add the lines from the provided .htaccess to your existing file.
+- Cache-Control and expiration rules for static assets, including images and fonts.
+- Gzip and optional Brotli compression, subject to enabled Apache modules.
+- MIME-type mappings for fonts and other assets.
+- Header examples for proxy caching and ETags, plus a Keep-Alive example that depends on server configuration.
+- WordPress rewrite rules and restrictions for selected files and directories.
 
-To install the WP Web Speed Boost configuration, follow these steps:
+## 🛠️ Apply selected rules
 
-1. Download the .htaccess file from this repository.
-2. Open your existing .htaccess file in a text editor.
-3. Add the lines from the downloaded .htaccess file to your existing file.
-4. Save and upload the updated .htaccess file to your server.
+1. Back up your current `.htaccess` and review the reference file against your host's Apache version, enabled modules, and override settings.
+2. Apply only the compatible rules to your existing file on a staging site. Preserve your site's WordPress rewrite block and any hosting- or plugin-managed rules.
+3. Test the homepage, permalinks, admin access, and static assets before deploying. Restore the backup if Apache reports a configuration error.
 
-Features
+> [!IMPORTANT]
+> Keep your existing `.htaccess`. A [`<DirectoryMatch>` block](https://httpd.apache.org/docs/2.4/mod/core.html#directorymatch) belongs in Apache server or virtual host configuration. Skip that block when editing `.htaccess`.
 
-The WP Web Speed Boost .htaccess configuration includes the following optimizations:
+## 🤝 Contributing
 
-- Define MIME types for various file formats.
-- Set cache control headers for images and fonts.
-- Adjust headers for security improvements and to avoid proxy servers distributing incorrect content.
-- Enable and configure Keep-Alive.
-- Disable ETags.
-- Set browser cache settings.
-- Enable Gzip compression.
+Use [issues](https://github.com/informigados/htaccess-wordpress/issues) or pull requests to suggest changes. Include the Apache version and hosting context when reporting a compatibility problem.
 
-Contributing
+## 👥 Authors
 
-We welcome contributions and suggestions to improve this .htaccess configuration. Please feel free to open issues or submit pull requests with your proposed changes. We aim to create a unique and original .htaccess configuration that provides the best possible performance for WordPress websites.
+- [Alex Brito](https://github.com/alexbritodev)
+- [INformigados](https://github.com/informigados)
 
-License
+## 📄 License
 
-WP Web Speed Boost is Copyright (C) 2023 INformigados - https://informigados.com.br
-
-The code in this repository is provided under the MIT License. See the LICENSE file for details.
+WP Web Speed Boost is © 2023 [INformigados](https://informigados.com.br/). This project is licensed under the MIT License.
